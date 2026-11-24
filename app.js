@@ -8,7 +8,7 @@ const view = session => { $('loginBox').classList.toggle('hidden', !!session); $
 async function request(action, extra = {}) {
   const { data: { session }, error } = await db.auth.getSession();
   if (error || !session) throw new Error('Sesi admin berakhir. Silakan masuk lagi.');
-  const response = await fetch(`${SUPABASE_URL}/functions/v1/ag-tokens`, {
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/smooth-function`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${session.access_token}` },
     body: JSON.stringify({ action, ...extra }),
